@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #0171d2;">
+<div class="container-fluid">
+    <%= link_to "Movie Review System", root_path,class: "navbar-brand"%>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <%= link_to "Home", root_path,class: "nav-link"%>
+        <!--search action-->
+        <%= form_tag movies_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :search, params[:search], class: "form-control me-2", placeholder: "Search Movies", aria: { label: "Search" } %>
+          <%= submit_tag "Search", class: "btn btn-outline-success", name: nil %>
+        <% end %>
+        <!--search action-->
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <% if user_signed_in? %>
+          <li class="nav-link">
+            Logged in as
+            <%= current_user.email %>
+          </li>
+          <%= link_to 'Edit Profile', edit_user_registration_path,class: "nav-link " %>
+          <%= button_to 'Sign out', destroy_user_session_path,method: :delete,class: "nav-link " %>
+        <% else %>
+          <%= link_to 'Sign up', new_user_registration_path,class: "nav-link " %>
+          <%= link_to 'Sign in', new_user_session_path,class: "nav-link" %>
+        <%end %>
+      </div>
+    </div>
+  </div>
+</nav>
+

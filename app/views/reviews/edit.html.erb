@@ -1,0 +1,42 @@
+<h2>Edit Review</h2>
+
+<%= form_for [@movie, @review] do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h4>Ratings</h4>
+  <div class="field">
+    <%= f.radio_button :rating , 1 %>
+    <%= f.label :one , '⭐1', :value=> 1 %>
+
+    <%= f.radio_button :rating , 2 %>
+    <%= f.label :two , '⭐2', :value=> 2 %>
+
+    <%= f.radio_button :rating , 3 %>
+    <%= f.label :three , '⭐3', :value=> 3 %>
+
+    <%= f.radio_button :rating , 4 %>
+    <%= f.label :four , "⭐4", :value=> 4 %>
+
+    <%= f.radio_button :rating , 5 %>
+    <%= f.label :five , "⭐5", :value=> 5 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :comment %>
+    <%= f.text_area :content, class: "form-control" %>
+  </div>
+<br>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>
+<br>
+<%= link_to "Cancel", movie_path(@movie),class:'btn btn-dark' %>
